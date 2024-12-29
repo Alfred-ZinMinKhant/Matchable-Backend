@@ -3,6 +3,9 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { SessionsModule } from "./sessions/sessions.module";
 import { BookingsModule } from "./bookings/bookings.module";
 import { MailService } from "./mail/mail.service";
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 @Module({
   imports: [
@@ -10,10 +13,7 @@ import { MailService } from "./mail/mail.service";
       type: "postgres",
       url: process.env.DATABASE_URL,
       entities: [__dirname + "/**/*.entity{.ts,.js}"],
-      synchronize: false,
-      ssl: {
-        rejectUnauthorized: false,
-      },
+      synchronize: true,
     }),
     SessionsModule,
     BookingsModule,
