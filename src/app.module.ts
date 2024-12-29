@@ -13,7 +13,7 @@ dotenv.config();
       type: "postgres",
       url: process.env.DATABASE_URL,
       entities: [__dirname + "/**/*.entity{.ts,.js}"],
-      synchronize: true,
+      synchronize: process.env.NODE_ENV !== "production",
     }),
     SessionsModule,
     BookingsModule,
